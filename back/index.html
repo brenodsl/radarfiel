@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Mirrored from criativadigital1.site/appzap2.2/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:23:54 GMT -->
+<head>
+<script src="https://t.contentsquare.net/uxa/08fd45ab3f2c5.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proteja Seu Relacionamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #128C7E;
+            --background-color: #f5f5f5;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+        html { box-sizing: border-box; }
+        *, *:before, *:after { box-sizing: inherit; }
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* <--- O problema está aqui */
+    overflow-x: hidden;
+}
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .content-wrapper { width: 100%; max-width: 550px; text-align: center; }
+        .hidden { display: none !important; }
+
+        /* CABEÇALHO (COM BLOQUEIO DE SELEÇÃO) */
+        .header {
+            background: #fff; padding: 16px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .header .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+/* CONTEÚDO PRINCIPAL (COM CARD CENTRALIZADO) */
+.main {
+    flex: 1; /* Faz a seção principal se esticar para ocupar o espaço vertical */
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centraliza o card verticalmente nesse espaço */
+}
+        .main h1 { font-size: 1.8rem; margin-bottom: 15px; font-weight: 700; color: var(--text-dark); }
+        .main p { font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light); line-height: 1.6; }
+        .card {
+            background: var(--white); border-radius: 16px; padding: 30px;
+            text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            width: 100%;
+        }
+        .btn {
+            background-color: var(--primary-green);
+            color: white; border: none; padding: 16px 28px;
+            font-size: 1rem; font-weight: 600; border-radius: 50px; cursor: pointer;
+            width: 100%; max-width: 320px; margin: 0 auto;
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none; transition: background-color 0.3s ease;
+        }
+        .btn:hover { background-color: var(--dark-green); }
+
+
+/* RODAPÉ (COM AJUSTE DE ESPAÇAMENTO) */
+.footer { 
+    background: #222; 
+    color: #ccc; 
+    padding: 25px 0 0 0; /* Padding superior, o inferior será no container */
+    font-size: 14px; 
+    text-align: center; 
+    /* Empurra o footer para o final da página apenas se houver espaço sobrando */
+    margin-top: auto; 
+    transition: padding-bottom 0.3s ease;
+}
+        .footer .container {
+             /* Adiciona um respiro na base do rodapé para o texto não cortar */
+             padding-bottom: 20px;
+        }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px 25px; margin-bottom: 15px; }
+        .footer-links a { color: #ccc; text-decoration: none; }
+        .footer-copyright { margin: 0; padding: 0 10px; }
+
+        /* AVISO DE COOKIES */
+        .cookie-notice {
+            position: fixed; bottom: 0; left: 0; right: 0; width: 100%;
+            background: #222; color: #fff; padding: 16px; z-index: 9999;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); display: none;
+            align-items: center; justify-content: center; gap: 20px;
+        }
+        .cookie-notice p { margin: 0; font-size: 14px; line-height: 1.5; flex-grow: 1; text-align: center;}
+        .cookie-btn {
+            background: var(--primary-green);
+            color: white; padding: 10px 24px; border: none;
+            border-radius: 30px; font-weight: 500; font-size: 14px; cursor: pointer;
+            white-space: nowrap; flex-shrink: 0;
+            transition: background-color 0.3s ease;
+        }
+        .cookie-btn:hover { background-color: var(--dark-green); }
+
+        /* AJUSTES MOBILE */
+        @media (max-width: 768px) {
+            .cookie-notice { flex-direction: column; text-align: center; gap: 15px; }
+            .cookie-btn { width: 90%; max-width: 300px; }
+        }
+        @media (max-width: 600px) {
+            .main { padding: 40px 20px; }
+            .footer-links { flex-direction: column; gap: 12px; }
+            .main h1 { font-size: 1.6rem; }
+            .main p { font-size: 1rem; }
+        }
+        .alert {
+            background-color: #e63946;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .info {
+            font-size: 18px;
+            color: #a9f586;
+            margin-bottom: 20px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+        .alerta-container {
+            width: 100%;
+        }
+        
+        .alerta-img {
+            width: 70%;
+            animation: piscar 1s infinite;
+        }
+        
+        @keyframes piscar {
+            0%   { opacity: 1; }
+            50%  { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    
+
+    <header class="header">
+        <div class="container">
+            <img src="logo.png" style="width: 100px;">
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="content-wrapper">
+            <div class="card">
+                <div class="alerta-container">
+                    <img src="alerta.jpg" class="alerta-img" id="alerta">
+                </div>
+                <div class="alert">
+                    AVISO IMPORTANTE CUIDADO!
+                </div>
+                <p class="info">
+                    Nosso sistema é programado para enviar um <strong>alerta automático ao número que você informou</strong> avisando que você está investigando!
+                </p>
+                <h1>CANCELAMENTO É FEITO APENAS APÓS O PAGAMENTO!</h1>
+                <p>O alerta automático é desativado quando você adquiri nosso aplicativo, mantendo todo o sigilo da sua investigação.</p>
+                <button class="btn" onclick="navegarPara('https://go.sigmapay.com.br/cmmsaxr4bq')">Continuar  R$15,90</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+<div class="footer-links">
+    <a href="javascript:void(0)" onclick="navegarPara('politica-de-privacidade/index.html')">Política de Privacidade</a>
+    <a href="javascript:void(0)" onclick="navegarPara('termos-de-uso/index.html')">Termos de Uso</a>
+    <a href="javascript:void(0)" onclick="navegarPara('aviso-legal/index.html')">Aviso Legal</a>
+</div>
+            <p class="footer-copyright">© 2025 SafeTech Brasil. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const alerta = document.getElementById("alerta");
+
+        setInterval(() => {
+            alerta.classList.toggle("ativo");
+        }, 500);
+        
+        function navegarPara(pagina, novosParams = {}) {
+            const paramsAtuais = new URLSearchParams(window.location.search);
+            for (const key in novosParams) {
+                paramsAtuais.set(key, novosParams[key]);
+            }
+            const queryString = paramsAtuais.toString();
+            window.location.href = pagina + (queryString ? '?' + queryString : '');
+        }
+
+        const cookieNotice = document.getElementById('cookieNotice');
+        const footer = document.querySelector('.footer');
+        
+        function aceitarCookies() {
+            if (!cookieNotice) return;
+            localStorage.setItem('cookiesAceitos', 'true');
+            ajustarLayoutParaCookie(); // Roda a verificação de novo para esconder e ajustar o padding
+        }
+
+        function ajustarLayoutParaCookie() {
+            if (!cookieNotice || !footer) return;
+            const cookiesJaAceitos = localStorage.getItem('cookiesAceitos') === 'true';
+
+            if (cookiesJaAceitos) {
+                cookieNotice.style.display = 'none';
+                footer.style.paddingBottom = '0px';
+            } else {
+                cookieNotice.style.display = 'flex';
+                // Garante que o cálculo da altura seja feito após o elemento estar visível
+                requestAnimationFrame(() => {
+                    const noticeHeight = cookieNotice.offsetHeight;
+                    footer.style.paddingBottom = noticeHeight + 'px';
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', ajustarLayoutParaCookie);
+        window.addEventListener('resize', ajustarLayoutParaCookie);
+    </script>
+</body>
+
+</html>

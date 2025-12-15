@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Mirrored from criativadigital1.site/appzap2.2/acesso/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:23:55 GMT -->
+<head>
+    <script src="https://t.contentsquare.net/uxa/08fd45ab3f2c5.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analise - Inicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #128C7E;
+            --background-color: #f5f5f5;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+        html { box-sizing: border-box; }
+        *, *:before, *:after { box-sizing: inherit; }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .content-wrapper { width: 100%; max-width: 550px; text-align: center; }
+
+        /* CABEÇALHO (COM 3 ITENS) */
+        .header { background: #fff; padding: 12px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header .container {
+            display: flex;
+            justify-content: space-between; /* Espaça os itens nas pontas */
+            align-items: center;
+        }
+        .menu-btn, .download-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .download-btn {
+            background: var(--primary-green);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        /* A logo central não precisa de estilo extra, o flexbox cuida do alinhamento */
+
+        /* CONTEÚDO PRINCIPAL */
+        .main {
+            flex: 1;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            background: var(--white); border-radius: 16px; padding: 30px;
+            text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            width: 100%; max-width: 480px;
+        }
+        .card h1 { font-size: 1.8rem; margin-bottom: 16px; font-weight: 700; }
+        .card p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px; }
+        
+        .grid { display: flex; flex-direction: column; gap: 16px; }
+        .btn {
+            background-color: var(--primary-green);
+            color: white; border: none; padding: 16px 28px;
+            font-size: 1rem; font-weight: 600; border-radius: 50px; cursor: pointer;
+            width: 100%;
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none; transition: background-color 0.3s ease;
+        }
+        .btn:hover { background-color: var(--dark-green); }
+        .btn svg { flex-shrink: 0; }
+        
+        /* RODAPÉ PADRÃO */
+        .footer { background: #222; color: #ccc; padding: 25px 0; font-size: 14px; text-align: center; margin-top: auto;}
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px 25px; margin-bottom: 15px; }
+        .footer-links a { color: #ccc; text-decoration: none; }
+        .footer-copyright { margin: 0; padding: 0 10px; }
+
+        /* AJUSTES MOBILE */
+        @media (max-width: 600px) {
+            .footer-links { flex-direction: column; gap: 12px; }
+            .card h1 { font-size: 1.6rem; }
+            .card p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <button class="menu-btn" aria-label="Abrir menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#333" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+            
+            <div class="header-logo">
+            
+                 <img src="logo.png" style="width: 100px;">
+        
+            </div>
+            
+            <button class="download-btn" aria-label="Download">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="card">
+            <h1>Proteja Seu Relacionamento</h1>
+            <p>Descubra como manter seu relacionamento seguro e saudável com nossa solução exclusiva.</p>
+            <div class="grid">
+                <button class="btn" onclick="navegarPara('../numero/index.html', { alvo: 'parceiro' })">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12Z"/>
+                        <path d="M12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+                    </svg>
+                    <span>Monitorar Parceiro</span>
+                </button>
+                <button class="btn" onclick="navegarPara('../numero/index.html', { alvo: 'parceira' })">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12Z"/>
+                        <path d="M12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+                    </svg>
+                    <span>Monitorar Parceira</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+<div class="footer-links">
+    <a href="javascript:void(0)" onclick="navegarPara('../politica-de-privacidade/index.html')">Política de Privacidade</a>
+    <a href="javascript:void(0)" onclick="navegarPara('../termos-de-uso/index.html')">Termos de Uso</a>
+    <a href="javascript:void(0)" onclick="navegarPara('../aviso-legal/index.html')">Aviso Legal</a>
+</div>
+            </div>
+            <p class="footer-copyright">© 2025 SafeTech Brasil. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function navegarPara(pagina, novosParams = {}) {
+            const paramsAtuais = new URLSearchParams(window.location.search);
+            for (const key in novosParams) {
+                paramsAtuais.set(key, novosParams[key]);
+            }
+            const queryString = paramsAtuais.toString();
+            window.location.href = pagina + (queryString ? '?' + queryString : '');
+        }
+    </script>
+</body>
+
+<!-- Mirrored from criativadigital1.site/appzap2.2/acesso/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:23:55 GMT -->
+</html>

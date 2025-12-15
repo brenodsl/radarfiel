@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Mirrored from criativadigital1.site/appzap2.2/relatorio/?alvo=parceiro by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:24:05 GMT -->
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WXZ73354ER"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WXZ73354ER');
+</script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório de Atividades - WhatsApp2.2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+ <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #128C7E;
+            --background-color: #f5f5f5;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --danger: #ff3b30;
+            --warning: #ffcc00;
+        }
+        html { box-sizing: border-box; }
+        *, *:before, *:after { box-sizing: inherit; }
+        
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border-radius: 0 0 16px 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        main { flex: 1; }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 20px;
+            color: var(--dark-green); 
+            font-weight: 600; 
+            font-size: 1.3rem;
+        }
+        
+        .card-title svg { margin-right: 10px; fill: var(--dark-green); width: 24px; height: 24px; }
+        
+        .card-content { color: var(--text-light); flex-grow: 1; }
+        
+        .highlight { color: var(--danger); font-weight: 600; }
+        
+        .item-list { list-style: none; padding: 0; margin: 20px 0 0 0; }
+        
+        .media-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 20px 0; }
+        
+        .media-item { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1; background-color: #e0e0e0; }
+        
+        .media-item img { width: 100%; height: 100%; object-fit: cover; filter: blur(5px); }
+        
+        .media-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; }
+        
+        .media-overlay svg { width: 32px; height: 32px; fill: white; }
+        
+        .button-group { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        
+        .map-wrapper { position: relative; border-radius: 12px; overflow: hidden; margin-top: 15px;}
+        
+        .map-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; cursor: pointer; }
+
+        /* Estilos do Popup de Chat */
+        .popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center;
+            z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s;
+        }
+        .popup-overlay.active { opacity: 1; visibility: visible; }
+        .popup-content {
+            width: 90%; max-width: 400px; background-color: #e5ddd5; border-radius: 15px;
+            display: flex; flex-direction: column; overflow: hidden; transform: scale(0.9); transition: transform 0.3s;
+        }
+        .popup-overlay.active .popup-content { transform: scale(1); }
+        .popup-header { background-color: var(--dark-green); color: white; padding: 12px 15px; display: flex; align-items: center; }
+        .popup-avatar { width: 40px; height: 40px; border-radius: 50%; margin-left: 10px; object-fit: cover; filter: blur(4px);}
+        .popup-name { font-weight: 600; flex: 1; margin-left: 10px;}
+        .popup-close { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
+        .popup-body {
+            padding: 15px 10px;
+            height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f0f2f5;
+            background-image: url('/img/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.html');
+        }
+        .chat-message {
+            max-width: 80%;
+            padding: 6px 9px;
+            position: relative;
+            word-wrap: break-word;
+            line-height: 1.4;
+            font-size: 14.2px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+        }
+        .chat-message:after { content: ""; display: table; clear: both; }
+        .chat-message.sent { background-color: #e7ffdb; align-self: flex-end; border-radius: 8px 0px 8px 8px; }
+        .chat-message.received { background-color: var(--white); align-self: flex-start; border-radius: 0px 8px 8px 8px; }
+        .msg-meta {
+            float: right;
+            margin-left: 10px;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            color: #8696a0;
+            font-size: 0.7em;
+            gap: 3px;
+            white-space: nowrap;
+        }
+        .popup-footer { padding: 15px; background-color: #f0f0f0; text-align: center; }
+        .popup-footer p { font-size: 0.9rem; color: var(--text-light); margin: 0 0 15px 0; }
+        
+        /* Botões */
+        .btn {
+            background-color: var(--primary-green); color: white; border: none; padding: 12px 24px;
+            font-size: 0.9rem; font-weight: 600; border-radius: 50px; cursor: pointer;
+            text-decoration: none; display: flex; align-items: center;
+            justify-content: center; gap: 8px; transition: background-color 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        .btn:hover { background-color: var(--dark-green); }
+        
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        #final-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer { padding: 30px 20px; text-align: center; }
+        .footer a { color: var(--text-light); text-decoration: none; font-size: 14px; margin: 0 10px; }
+        .copyright { font-size: 12px; color: var(--text-light); margin-top: 15px; }
+
+
+/* CSS PARA O NOVO DESIGN DA LISTA DE CONVERSAS (VERSÃO FINAL) */
+.list-item-card {
+    background-color: var(--white);
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 12px; /* Pequeno ajuste de espaçamento */
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Pequeno ajuste de espaçamento */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden; 
+}
+.list-item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.item-avatar-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+.item-avatar { 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    background-color: #eee; 
+    filter: blur(4px);
+}
+.item-alert-icon {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--danger);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid white;
+}
+.item-text-wrapper {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.list-item-card .item-name {
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 1.05em;
+    line-height: 1.4;
+    /* As 3 linhas abaixo garantem que o número não quebre o layout */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-details-line {
+    overflow: hidden;
+    line-height: 1.3;
+}
+.item-time {
+    float: right; 
+    margin-left: 10px;
+    color: #777;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+.item-status-new {
+    color: #dd2c00;
+    font-weight: 500;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+/* ESTILOS PARA A LISTA DE PALAVRAS-CHAVE */
+.keyword-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 5px;
+    border-bottom: 1px solid #f5f5f5;
+}
+.keyword-item:last-child {
+    border-bottom: none;
+}
+.keyword-name {
+    font-size: 1em;
+    color: var(--text-dark);
+}
+.keyword-count {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--text-dark);
+    background-color: #f0f0f0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    min-width: 32px;
+    text-align: center;
+}
+        /* Estilos para Telas Pequenas (Mobile) */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.7rem; }
+            .media-grid { grid-template-columns: 1fr 1fr; }
+            .floating-cta .btn {
+                font-size: 1rem;
+                padding: 16px 12px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            #botaoPreco {
+                min-width: 58px;
+                margin-left: 8px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <h1 id="reportTitle">Relatório de Atividades</h1>
+            <p id="reportSubtitle">Análise completa das atividades.</p>
+        </header>
+  <div class="container">
+        <main>
+            <div class="card" id="conversationCard">
+                <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>Análise de Conversas</h3>
+                <div class="card-content">
+                    <p>
+                        <span class="highlight" id="convoCount">...</span> encontradas durante a análise. Nossa tecnologia avançada conseguiu recuperar <span class="highlight">mensagens apagadas</span> e classificou automaticamente as conversas <span class="highlight">mais críticas</span> com base no conteúdo.<br>
+                        <span style="color:var(--text-light);font-size:0.95em;display:block;margin-top:8px;">
+                            Toque em uma conversa abaixo para visualizar os detalhes.
+                        </span>
+                    </p>
+                    <ul class="item-list" id="convoList"></ul>
+                    <a href="javascript:void(0)" class="btn cta-link" style="margin-top:20px;">🔓 Ver Todas as Conversas</a>
+                </div>
+            </div>
+
+            <div class="card" id="keywordsCard">
+                <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>Palavras-chave Suspeitas</h3>
+                <div class="card-content">
+                    <p>
+                        O sistema analisou <span class="highlight">4.327 mensagens</span> e identificou diversas palavras-chave relacionadas a conversas suspeitas e comportamento fora do comum.
+                    </p>
+                    <ul class="item-list" id="keywordList"></ul>
+                    <a href="javascript:void(0)" class="btn cta-link" style="margin-top:20px;">🔓 Ver Todas as Palavras</a>
+                </div>
+            </div>
+
+            <div class="card" id="mediaCard">
+                <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>Mídia Recuperada</h3>
+                <div class="card-content">
+                    <p id="mediaMsgTexto"></p>
+                    <div class="button-group">
+                        <a href="javascript:void(0)" class="btn cta-link">🔓 Desbloquear Áudios</a>
+                    </div>
+                    <div class="media-grid" id="mediaGrid"></div>
+                    <div class="button-group">
+                        <a href="javascript:void(0)" class="btn cta-link">🔓 Desbloquear Fotos</a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="card" id="locationCard">
+                 <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Localização Suspeita</h3>
+                <div class="card-content">
+                     <p id="locationText">
+                         O sistema identificou uma localização recente associada ao número analisado. Veja abaixo a última movimentação registrada:
+                     </p>
+                     <div class="map-wrapper">
+                        <iframe id="mapFrame" width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+                        <div class="map-overlay" onclick="document.querySelector('.cta-link').click()"></div>
+                    </div>
+                    <a href="javascript:void(0)" class="btn cta-link" style="margin-top:20px;">🔓 Ver Histórico Completo</a>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div>
+            </div>
+        </footer>
+    </div>
+    </div>
+    <div class="floating-cta" id="pagamento">
+    <a href="javascript:void(0)" class="btn cta-link" id="final-cta">
+        <span style="display: flex; align-items: center; gap: 10px;">
+            <span class="cta-lock" style="font-size:1.25em;">🔒</span>
+            <span style="font-weight:600;">DESBLOQUEAR TUDO</span>
+        </span>
+        <span id="botaoPreco" style="font-weight:700; letter-spacing:1px;">R$ 27,90</span>
+    </a>
+</div>
+
+    <div class="popup-overlay" id="chatPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <button class="popup-close" id="popupClose">×</button>
+                <img id="popupAvatar" src="#" alt="Avatar" class="popup-avatar">
+                <div id="popupName" class="popup-name"></div>
+            </div>
+            <div class="popup-body" id="popupBody"></div>
+            <div class="popup-footer">
+                <p>Para visualizar a conversa completa, desbloqueie o acesso.</p>
+                <a href="javascript:void(0)" class="btn cta-link">Desbloquear Conversa</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === LINK CENTRALIZADO DO CHECKOUT ===
+        const CHECKOUT_URL = "https://go.perfectpay.com.br/PPU38CQ2PP0?src=POCO-2.2APP"; // <-- Troque aqui!
+        const VALOR = "R$ 22,90"; // <- Só trocar aqui depois para atualizar o preço em todo lugar
+        // Funções para travar/destravar rolagem
+function lockBodyScroll() {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const wrapper = document.querySelector('.page-wrapper');
+    wrapper.style.overflowY = 'hidden'; // Trava a rolagem vertical
+    wrapper.style.paddingRight = `${scrollbarWidth}px`;
+}
+
+function unlockBodyScroll() {
+    const wrapper = document.querySelector('.page-wrapper');
+    wrapper.style.overflowY = '';
+    wrapper.style.paddingRight = '';
+}
+
+        // Função para manter utm/params ao navegar:
+        function navegarPara(pagina, novosParams = {}) {
+            const paramsAtuais = new URLSearchParams(window.location.search);
+            for (const key in novosParams) {
+                paramsAtuais.set(key, novosParams[key]);
+            }
+            const queryString = paramsAtuais.toString();
+            window.location.href = pagina + (queryString ? '?' + queryString : '');
+        }
+
+        // Faz todos os .cta-link navegarem via JS!
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('botaoPreco').textContent = VALOR;
+            document.querySelectorAll('.cta-link').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    navegarPara(CHECKOUT_URL);
+                }
+            });
+
+            const params = new URLSearchParams(window.location.search);
+            const alvo = params.get('alvo') || 'parceiro';
+            const numero = localStorage.getItem('numeroClonado');
+            const dados = {
+                 parceiro: {
+                    convoCount: "148 conversas suspeitas",
+                    conversas: [
+                        { id: 1, nome: 'Julia S.', status: 'Mensagem Apagada Recuperada', tempo: 'Ontem', img: '../img/pm01.webp', 
+                            chat: [
+                                {t:'r', m:'Oi, tudo bem?', h:'09:02'},
+                                {t:'s', m:'Tudo sim e vc? 😘', h:'09:03'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:06'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'09:06'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:27'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:28'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'09:35'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:53'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:53'}
+                            ]
+                        },
+                        { id: 2, nome: 'Colega de Trabalho', status: 'Áudio Suspeito Detectado', tempo: '3 Dias', img: '../img/pm02.webp', 
+                            chat: [
+                                {t:'r', m:'Eiii', h:'13:22'},
+                                {t:'s', m:'To aqui amor', h:'13:23'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:27'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'13:32'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:33'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:33'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'13:46'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:50'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:50'}
+                            ]
+                        },
+                        { id: 3, nome: 'Contato Salvo', status: 'Fotos Suspeitas Encontradas', tempo: '1 Semana', img: '../img/pm03.webp', 
+                            chat: [
+                                {t:'r', m:'Cadê você não vai me mandar?', h:'17:44'},
+                                {t:'s', m:'Claro, rsrsrs 😏', h:'17:46'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'17:47'},
+                                {t:'r', m:'Imagem bloqueada', h:'17:47'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'17:50'},
+                                {t:'r', m:'Imagem bloqueada', h:'17:55'},
+                                {t:'r', m:'Esta mensagem foi apagada', h:'17:55'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'17:55'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'18:00'}
+                            ]
+                        }
+                    ],
+                    keywords: ["Gostosa", "Amor", "Segredo", "Escondido", "Não Conta"],
+                    audios: 3,
+                    fotosApagadas: 267,
+                    fotos: ["../img/m01.webp", "../img/m02.webp", "../img/m03.webp", "../img/m04.webp", "../img/m05.webp", "../img/m06.webp"],
+                },
+                 parceira: {
+                    convoCount: "148 conversas suspeitas",
+                    conversas: [
+                        { id: 4, nome: 'Carlos P.', status: 'Mensagem Apagada Recuperada', tempo: 'Ontem', img: '../img/ph01.webp', 
+                            chat: [
+                                {t:'r', m:'Oi, tudo bem?', h:'09:02'},
+                                {t:'s', m:'Tudo sim e vc? 😘', h:'09:03'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:06'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'09:06'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:27'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:28'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'09:35'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:53'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'09:53'}
+                            ]
+                        },
+                        { id: 5, nome: 'Chefe', status: 'Áudio Suspeito Detectado', tempo: '3 Dias', img: '../img/ph02.webp', 
+                            chat: [
+                                {t:'r', m:'Eiii', h:'13:22'},
+                                {t:'s', m:'To aqui amor', h:'13:23'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:27'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'13:32'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:33'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:33'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'13:46'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:50'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'13:50'}
+                            ]
+                        },
+                        { id: 6, nome: 'Amigo Antigo', status: 'Fotos Suspeitas Encontradas', tempo: '1 Semana', img: '../img/ph03.webp', 
+                            chat: [
+                                {t:'r', m:'Cadê você não vai me mandar?', h:'17:44'},
+                                {t:'s', m:'Claro, rsrsrs 😏', h:'17:46'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'17:47'},
+                                {t:'r', m:'Imagem bloqueada', h:'17:47'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'17:50'},
+                                {t:'r', m:'Imagem bloqueada', h:'17:55'},
+                                {t:'r', m:'Esta mensagem foi apagada', h:'17:55'},
+                                {t:'r', m:'Conteúdo bloqueado', h:'17:55'},
+                                {t:'s', m:'Conteúdo bloqueado', h:'18:00'}
+                            ]
+                        }
+                    ],
+                    keywords: ["Gostoso", "Amor", "Segredo", "Escondido", "Não Conta"],
+                    audios: 3,
+                    fotosApagadas: 267,
+                    fotos: ["../img/h01.webp", "../img/h02.webp", "../img/h03.webp", "../img/h04.webp", "../img/h05.webp", "../img/h06.webp"],
+                }
+            };
+            const dadosAtuais = dados[alvo];
+
+            if (numero) {
+                document.getElementById('reportSubtitle').textContent = `Análise para: ${numero.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3')}`;
+            }
+            document.getElementById('convoCount').textContent = dadosAtuais.convoCount;
+
+                       // Texto dinâmico do card de mídia:
+            const audiosTxt = dadosAtuais.audios ?? 0;
+            const fotosTxt = dadosAtuais.fotosApagadas ?? 0;
+            document.getElementById('mediaMsgTexto').innerHTML =
+              `<span class="highlight">${audiosTxt} áudios comprometedores</span> foram recuperados durante a análise. Além disso, o sistema encontrou <span class="highlight">${fotosTxt} fotos apagadas</span> que podem conter conteúdo sensível.`;
+
+            const convoList = document.getElementById('convoList');
+            convoList.innerHTML = '';
+
+            // --- NÚMEROS PERSONALIZADOS DIFERENTES ---
+            const finaisPersonalizados = [8396, 7289, 8715];
+
+    dadosAtuais.conversas.forEach((c, index) => {
+    let dddUser = "XX", numUser = "9XXXX-XXXX";
+    if (numero) {
+        const n = numero.replace(/\D/g, "");
+        if (n.length >= 11) {
+            dddUser = n.slice(0,2);
+        }
+    }
+    const finaisPersonalizados = [8392, 7381, '0032'];
+    const final = finaisPersonalizados[index] || Math.floor(1000 + Math.random()*9000);
+    const nomeMask = `+55 ${dddUser} 9XXXX-${String(final).slice(-4)}`;
+    c.numMask = nomeMask;
+
+    const li = document.createElement('li');
+    li.className = 'list-item-card';
+    li.onclick = () => abrirPopup(c);
+    li.innerHTML = `
+        <div class="item-avatar-wrapper">
+            <img src="${c.img}" alt="Avatar" class="item-avatar">
+            <div class="item-alert-icon">!</div>
+        </div>
+        <div class="item-text-wrapper">
+            <div class="item-name">${nomeMask}</div>
+            <div class="item-details-line">
+                <div class="item-status-new">${c.status}</div>
+                <div class="item-time">${c.tempo}</div>
+            </div>
+        </div>
+    `;
+    convoList.appendChild(li);
+});
+
+            const keywordList = document.getElementById('keywordList');
+keywordList.innerHTML = '';
+dadosAtuais.keywords.forEach(kw => {
+    keywordList.innerHTML += `<li class="keyword-item"><span class="keyword-name">"${kw}"</span><span class="keyword-count">${Math.floor(Math.random() * 10) + 3}</span></li>`;
+});
+
+            const mediaGrid = document.getElementById('mediaGrid');
+            mediaGrid.innerHTML = '';
+            dadosAtuais.fotos.forEach(fotoUrl => {
+                mediaGrid.innerHTML += `
+      <div class="media-item">
+        <img src="${fotoUrl}" alt="Imagem borrada">
+        <div class="media-overlay">
+          <svg viewBox="0 0 64 64" width="48" height="48" fill="none" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.32));">
+            <rect x="16" y="28" width="32" height="24" rx="6" fill="white" fill-opacity="0.96"/>
+            <rect x="16" y="28" width="32" height="24" rx="6" stroke="#128C7E" stroke-width="2"/>
+            <path d="M20 28v-7a12 12 0 0 1 24 0v7" stroke="#128C7E" stroke-width="3" fill="none"/>
+            <circle cx="32" cy="44" r="4" fill="#128C7E"/>
+            <rect x="30.5" y="44" width="3" height="7" rx="1.5" fill="#128C7E"/>
+          </svg>
+        </div>
+      </div>
+    `;
+            });
+
+fetch('https://wtfismyip.com/json')
+    .then(res => res.json())
+    .then(data => {
+        const cidade = data.YourFuckingCity || "";
+        const regiao = data.YourFuckingRegion || "";
+        const pais   = data.YourFuckingCountry || "";
+        document.getElementById('locationText').innerHTML = `O número esteve neste motel em <strong>${cidade}</strong> nos últimos 7 dias. Abaixo está a localização mais recente registrada.`;
+        const mapFrame = document.getElementById('mapFrame');
+        if(mapFrame) mapFrame.src =
+          `https://www.google.com/maps/embed/v1/place?key=AIzaSyAZnW7kz1R4UiARrZLtiiS7dHE9M2VmJBE&q=Motel+${encodeURIComponent(cidade + ' ' + regiao + ' ' + pais)}&zoom=15`;
+    });
+            const popup = document.getElementById('chatPopup'), popupClose = document.getElementById('popupClose'),
+                popupAvatar = document.getElementById('popupAvatar'), popupName = document.getElementById('popupName'),
+                popupBody = document.getElementById('popupBody');
+
+function abrirPopup(conversa) {
+    popupAvatar.src = conversa.img;
+    popupAvatar.style.filter = 'blur(4px)';
+    popupName.textContent = conversa.numMask;
+    popupBody.innerHTML = '';
+    conversa.chat.forEach(msg => {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-message ${msg.t === 's' ? 'sent' : 'received'}`;
+
+        let messageStyle = '';
+        if (msg.m === 'Conteúdo bloqueado') {
+          messageStyle = 'style="color: var(--danger); font-weight: 500;"';
+        }
+        msgDiv.innerHTML = `
+          <span ${messageStyle}>${msg.m}</span>
+          ${msg.t === 's' ? `
+            <span class="msg-meta">
+              <span>${msg.h || ''}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="13" style="margin-left:2px;vertical-align:text-bottom;" viewBox="0 0 24 24" fill="none" stroke="#53bdeb" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 13 6 18 23 1"></polyline>
+                <polyline points="8 13 13 18 23 8"></polyline>
+              </svg>
+            </span>
+          ` : msg.h ? `<span class="msg-meta"><span>${msg.h}</span></span>` : ''}
+        `;
+        popupBody.appendChild(msgDiv);
+    });
+    popup.classList.add('active');
+    lockBodyScroll();
+}
+if (popupClose) popupClose.onclick = () => { 
+    popup.classList.remove('active');
+    unlockBodyScroll();
+};
+if (popup) popup.onclick = (e) => { 
+    if (e.target === popup) {
+        popup.classList.remove('active');
+        unlockBodyScroll();
+    }
+};
+        });
+    </script>
+</body>
+
+<!-- Mirrored from criativadigital1.site/appzap2.2/relatorio/?alvo=parceiro by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:24:05 GMT -->
+</html>

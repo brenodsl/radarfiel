@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Mirrored from criativadigital1.site/appzap2.2/numero/?alvo=parceira by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:23:55 GMT -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Número</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-green: #25D366;
+            --dark-green: #128C7E;
+            --background-color: #f5f5f5;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+        html { box-sizing: border-box; }
+        *, *:before, *:after { box-sizing: inherit; }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .content-wrapper { width: 100%; max-width: 480px; text-align: center; }
+        .hidden { display: none !important; }
+
+        /* CABEÇALHO PADRÃO */
+        .header { background: #fff; padding: 12px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .menu-btn { background: transparent; border: none; cursor: pointer; padding: 8px; }
+        .download-btn {
+            background: var(--primary-green); color: white; border: none; border-radius: 50%;
+            width: 40px; height: 40px; display: flex; align-items: center;
+            justify-content: center; cursor: pointer; transition: transform 0.3s ease;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+        .main { flex: 1; padding: 40px 20px; display: flex; justify-content: center; align-items: flex-start; }
+        .main h1 { font-size: 1.8rem; margin-bottom: 15px; font-weight: 700; color: var(--text-dark); }
+        .main p { font-size: 1.1rem; margin-bottom: 30px; color: var(--text-light); line-height: 1.6; }
+        .card {
+            background: var(--white); border-radius: 16px; padding: 30px;
+            text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            width: 100%; margin-bottom: 24px;
+        }
+        
+        /* Estilos Específicos para a Página de Número (Mantidos como você pediu) */
+        .input-group { margin-bottom: 16px; }
+        .input-field {
+            width: 100%; padding: 16px; font-size: 18px; text-align: center;
+            border: 1px solid #ccc; border-radius: 12px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .input-field:focus {
+            outline: none; border-color: #128C7E;
+            box-shadow: 0 0 0 3px rgba(18, 140, 126, 0.2);
+        }
+        .btn {
+            background-color: var(--dark-green); color: white; border: none; padding: 16px;
+            font-size: 16px; font-weight: 600; border-radius: 50px; cursor: pointer;
+            width: 100%; box-shadow: 0 6px 16px rgba(18, 140, 126, 0.25);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        .btn:disabled {
+            background-color: #a5a5a5;
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        .proof-item {
+            background-color: #E6F4EA; border: 1px solid #B7E1C7; border-radius: 12px;
+            padding: 12px 16px; margin-bottom: 10px; box-shadow: none;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            text-align: left;
+        }
+        .proof-item.show { opacity: 1; transform: translateY(0); }
+        .proof-item p { font-size: 14px; font-weight: 500; color: #1A532B; margin: 0; }
+
+        /* RODAPÉ PADRÃO */
+        .footer { background: #222; color: #ccc; padding: 25px 0; font-size: 14px; text-align: center; margin-top: auto;}
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px 25px; margin-bottom: 15px; }
+        .footer-links a { color: #ccc; text-decoration: none; }
+        .footer-copyright { margin: 0; padding: 0 10px; }
+        
+        /* AJUSTES MOBILE PADRÃO */
+        @media (max-width: 600px) {
+            .main h1 { font-size: 1.6rem; }
+            .main p { font-size: 1rem; }
+            .footer-links { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <button class="menu-btn" aria-label="Abrir menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#333" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+            
+            <div class="header-logo">
+                <svg width="150" height="26" viewBox="0 0 150 26" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488" fill="#25D366"/>
+                    <text x="32" y="18" font-family="'Inter', sans-serif" font-size="18" font-weight="600" fill="#25D366">WhatsApp</text>
+                </svg>
+            </div>
+            
+            <button class="download-btn" aria-label="Download">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            </button>
+        </div>
+    </header>
+    <main class="main">
+        <div class="content-wrapper">
+            <h1>Parabéns, você ganhou 1 acesso gratuito!</h1>
+            <p>Insira o número abaixo e inicie o monitoramento silencioso.</p>
+
+            <div class="card">
+                <div class="input-group">
+                    <input type="tel" id="phoneInput" class="input-field" placeholder="(99) 99999-9999" maxlength="15">
+                </div>
+                <button id="cloneButton" class="btn" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Clonar WhatsApp Agora
+                </button>
+            </div>
+
+            <div id="proof-container">
+                <div class="proof-item" id="proof1"><p id="proofText1"></p></div>
+                <div class="proof-item" id="proof2"><p id="proofText2"></p></div>
+                <div class="proof-item" id="proof3"><p id="proofText3"></p></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+<div class="footer-links">
+    <a href="javascript:void(0)" onclick="navegarPara('../politica-de-privacidade/index.html')">Política de Privacidade</a>
+    <a href="javascript:void(0)" onclick="navegarPara('../termos-de-uso/index.html')">Termos de Uso</a>
+    <a href="javascript:void(0)" onclick="navegarPara('../aviso-legal/index.html')">Aviso Legal</a>
+</div>
+            </div>
+            <p class="footer-copyright">© 2025 SafeTech Brasil. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * Função Universal para Navegação com Parâmetros
+         */
+        function navegarPara(pagina, novosParams = {}) {
+            const paramsAtuais = new URLSearchParams(window.location.search);
+            for (const key in novosParams) {
+                paramsAtuais.set(key, novosParams[key]);
+            }
+            const queryString = paramsAtuais.toString();
+            window.location.href = pagina + (queryString ? '?' + queryString : '');
+        }
+
+        /**
+         * Lógica Específica da Página de Número
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneInput = document.getElementById('phoneInput');
+            const cloneButton = document.getElementById('cloneButton');
+
+            if (phoneInput && cloneButton) {
+                // Máscara para o telefone
+                phoneInput.addEventListener('input', function () {
+                    let valor = this.value.replace(/\D/g, '');
+                    valor = valor.substring(0, 11);
+                    let formatado = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+                    this.value = formatado;
+                    cloneButton.disabled = (valor.length !== 11);
+                });
+
+                // Ação do botão
+                cloneButton.addEventListener('click', function () {
+                    if(this.disabled) return;
+                    const numero = phoneInput.value.replace(/\D/g, '');
+                    localStorage.setItem('numeroClonado', numero);
+                    navegarPara('../carregando/index.html'); // USA A FUNÇÃO CORRETA
+                });
+            }
+
+            // Lógica das Provas Sociais
+            function gerarProvaSocial() {
+                const ddds = ['11', '21', '31', '41', '51', '61', '71', '81'];
+                const cidades = ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre', 'Brasília', 'Salvador', 'Recife'];
+                const numInicio = Math.floor(90000 + Math.random() * 999);
+                const numFinal = 'XX' + Math.floor(Math.random() * 90).toString().padStart(2, '0');
+                const dddIndex = Math.floor(Math.random() * ddds.length);
+                return `✓ (${ddds[dddIndex]}) ${numInicio}-${numFinal} de ${cidades[dddIndex]} teve o WhatsApp clonado com sucesso!`;
+            }
+
+            function atualizarItemProva(index) {
+                const item = document.getElementById(`proof${index}`);
+                const text = document.getElementById(`proofText${index}`);
+                if (item && text) {
+                    item.classList.remove('show');
+                    setTimeout(() => {
+                        text.textContent = gerarProvaSocial();
+                        item.classList.add('show');
+                    }, 500);
+                }
+            }
+
+            function iniciarProvasSociais() {
+                if (!document.getElementById('proof1')) return;
+                setTimeout(() => { atualizarItemProva(1); }, 1000);
+                setTimeout(() => { atualizarItemProva(2); }, 2500);
+                setTimeout(() => { atualizarItemProva(3); }, 4000);
+                setInterval(() => {
+                    const index = Math.floor(Math.random() * 3) + 1;
+                    atualizarItemProva(index);
+                }, 4500);
+            }
+
+            iniciarProvasSociais();
+        });
+    </script>
+</body>
+
+<!-- Mirrored from criativadigital1.site/appzap2.2/numero/?alvo=parceira by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:23:55 GMT -->
+</html>
