@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
         :root {
-            --primary-green: #25D366;
-            --dark-green: #128C7E;
-            --background-color: #f5f5f5;
+            --primary-green: #F54C5C;
+            --dark-green: #F54C5C;
+            --background-color: #FCF5EB;
             --text-dark: #2c3e50;
             --text-light: #7f8c8d;
             --white: #ffffff;
@@ -38,8 +38,8 @@
         .hidden { display: none !important; }
 
         /* CABEÇALHO */
-        .header { background: #fff; padding: 12px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .header { padding: 16px 0; }
+        .header .container { display: flex; justify-content: center; align-items: center; }
         .menu-btn { background: transparent; border: none; cursor: pointer; padding: 8px; }
         .download-btn {
             background: var(--primary-green); color: white; border: none; border-radius: 50%;
@@ -167,17 +167,12 @@
 
     <header class="header">
         <div class="container">
-            <button class="menu-btn" aria-label="Abrir menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#333" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-            </button>
+            
             
             <div class="header-logo">
-                <img src="logo.png" style="width: 100px;">
+                <img src="logo-radar.png" style="width: 125px;">
             </div>
             
-            <button class="download-btn" aria-label="Download">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            </button>
         </div>
     </header>
 
@@ -238,7 +233,7 @@
     <a href="javascript:void(0)" onclick="navegarPara('../aviso-legal/index.html')">Aviso Legal</a>
 </div>
             </div>
-            <p class="footer-copyright">© 2025 SafeTech Brasil. Todos os direitos reservados.</p>
+            <p class="footer-copyright">© 2025 RadarFiel. Todos os direitos reservados.</p>
         </div>
     </footer>
     

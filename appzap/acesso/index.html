@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
         :root {
-            --primary-green: #25D366;
+            --primary-green: #F54C5C;
             --dark-green: #128C7E;
-            --background-color: #f5f5f5;
+            --background-color: #FCF5EB;
             --text-dark: #2c3e50;
             --text-light: #7f8c8d;
             --white: #ffffff;
@@ -35,10 +35,10 @@
         .content-wrapper { width: 100%; max-width: 550px; text-align: center; }
 
         /* CABEÇALHO (COM 3 ITENS) */
-        .header { background: #fff; padding: 12px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header {  padding: 16px 0; }
         .header .container {
             display: flex;
-            justify-content: space-between; /* Espaça os itens nas pontas */
+            justify-content: center;
             align-items: center;
         }
         .menu-btn, .download-btn {
@@ -81,7 +81,7 @@
             color: white; border: none; padding: 16px 28px;
             font-size: 1rem; font-weight: 600; border-radius: 50px; cursor: pointer;
             width: 100%;
-            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 6px 16px rgba(245, 76, 92, 0.7);
             display: flex; align-items: center; justify-content: center; gap: 10px;
             text-decoration: none; transition: background-color 0.3s ease;
         }
@@ -105,19 +105,15 @@
 <body>
     <header class="header">
         <div class="container">
-            <button class="menu-btn" aria-label="Abrir menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#333" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-            </button>
+            
             
             <div class="header-logo">
             
-                 <img src="logo.png" style="width: 100px;">
+                 <img src="logo-radar.png" style="width: 125px;">
         
             </div>
             
-            <button class="download-btn" aria-label="Download">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            </button>
+            
         </div>
     </header>
 
@@ -153,7 +149,7 @@
     <a href="javascript:void(0)" onclick="navegarPara('../aviso-legal/index.html')">Aviso Legal</a>
 </div>
             </div>
-            <p class="footer-copyright">© 2025 SafeTech Brasil. Todos os direitos reservados.</p>
+            <p class="footer-copyright">© 2025 RadarFiel. Todos os direitos reservados.</p>
         </div>
     </footer>
 
