@@ -127,6 +127,183 @@
         .access-button:hover { background-color: #075E54; }
         .access-button svg { margin-right: 8px; }
 
+        /* SEÇÃO DE CRÉDITO ESGOTADO */
+        .credit-exhausted-section {
+            width: 100%; margin-top: 30px; padding: 30px; 
+            background-color: var(--white); border-radius: 16px; 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); text-align: center;
+            display: none; /* Começa escondido */
+        }
+        .credit-exhausted-section.visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .warning-icon-large {
+            font-size: 64px; margin-bottom: 20px;
+            color: #ffc107;
+        }
+        .credit-exhausted-section h2 {
+            color: var(--primary-green);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .credit-exhausted-section p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .used-number-display {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+        .price-highlight {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #28a745;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f0fff4;
+            border-radius: 8px;
+            border: 2px solid #c3e6cb;
+        }
+        .checkout-button {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-decoration: none;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(245, 76, 92, 0.4);
+        }
+        .checkout-button:hover {
+            background-color: #e43e4e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(245, 76, 92, 0.6);
+        }
+        .checkout-button svg {
+            margin-right: 10px;
+        }
+
+        /* POPUP STYLES */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .popup {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .popup-overlay.active .popup {
+            transform: translateY(0);
+        }
+        .popup h2 {
+            color: var(--primary-green);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .popup p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .popup-buttons {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+        .popup-btn {
+            padding: 14px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+            box-shadow: 0 4px 12px rgba(245, 76, 92, 0.4);
+        }
+        .popup-btn-secondary {
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            border: 1px solid #dee2e6;
+        }
+        .popup-btn-primary:hover {
+            background-color: #e43e4e;
+            transform: translateY(-2px);
+        }
+        .popup-btn-secondary:hover {
+            background-color: #e9ecef;
+        }
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 5px;
+            z-index: 10001;
+        }
+        .warning-icon {
+            color: #ffc107;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* RODAPÉ */
         .footer { background: #222; color: #ccc; padding: 25px 0; font-size: 14px; text-align: center; margin-top: auto; }
         .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px 25px; margin-bottom: 15px; }
@@ -151,15 +328,42 @@
         @media (max-width: 768px) {
             .cookie-notice { flex-direction: column; text-align: center; gap: 15px; }
             .cookie-btn { width: 90%; max-width: 300px; }
+            .popup { padding: 20px; }
+            .popup-buttons { flex-direction: column; }
+            .price-highlight { font-size: 1.5rem; }
+            .used-number-display { font-size: 1rem; }
         }
         @media (max-width: 600px) {
             .footer-links { flex-direction: column; gap: 12px; }
             .title { font-size: 1.6rem; }
             .subtitle { font-size: 1rem; }
+            .credit-exhausted-section { padding: 20px; }
         }
     </style>
 </head>
 <body>
+    <!-- Popup para acesso já utilizado -->
+    <div id="usedAccessPopup" class="popup-overlay">
+        <div class="popup">
+            <button class="popup-close" onclick="closePopupAndShowCreditSection()">&times;</button>
+            <h2>Acesso Completo</h2>
+            <p>Você já utilizou seu acesso gratuito para o número:</p>
+            <p id="popupUsedNumber" style="font-size: 1.2rem; font-weight: bold; color: var(--primary-green); margin: 15px 0;"></p>
+            <p>Para acessar o relatório completo deste número e ter acesso ilimitado ao nosso aplicativo, você pode adquirir a versão completa por apenas:</p>
+            <p style="font-size: 1.4rem; font-weight: bold; color: #28a745; margin: 15px 0;">R$ 17,90</p>
+            <div class="popup-buttons">
+                <button class="popup-btn popup-btn-secondary" onclick="closePopupAndShowCreditSection()">
+                    Fechar
+                </button>
+                <a href="https://go.sigmapay.com.br/eft3cgbtcc" target="_blank" class="popup-btn popup-btn-primary">
+                    Ir para o Checkout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+
     <div id="cookieNotice" class="cookie-notice">
         <p>Este site utiliza cookies para melhorar sua experiência. Ao continuar, você concorda com nossa política.</p>
         <button onclick="aceitarCookies()" class="cookie-btn">Aceitar</button>
@@ -167,14 +371,38 @@
 
     <header class="header">
         <div class="container">
-            
-            
             <div class="header-logo">
                 <img src="logo-radar.png" style="width: 125px;">
             </div>
-            
         </div>
     </header>
+
+    <!-- Seção de crédito esgotado (aparece depois de fechar o popup) -->
+    <div id="creditExhaustedSection" class="credit-exhausted-section">
+        <div class="warning-icon-large">⚠️</div>
+        <h2>Seu Crédito Gratuito Esgotou</h2>
+        <p>Você já utilizou seu acesso gratuito para o número abaixo:</p>
+        <div class="used-number-display" id="creditExhaustedNumber"></div>
+        <p>Para continuar acessando o relatório completo deste número e ter acesso ilimitado ao nosso aplicativo com monitoramento em tempo real:</p>
+        <div class="price-highlight">
+            Apenas R$ 17,90
+        </div>
+        <p style="font-size: 0.9rem; color: #6c757d; margin-top: 20px;">
+            ✅ Acesso completo ao relatório<br>
+            ✅ Monitoramento em tempo real<br>
+            ✅ Suporte 24/7<br>
+            ✅ Garantia de 7 dias
+        </p>
+        <a href="https://go.sigmapay.com.br/eft3cgbtcc" target="_blank" class="checkout-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 16h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2V8h2a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v2h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+            </svg>
+            Adquirir Acesso Completo Agora
+        </a>
+        <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">
+            Pagamento seguro via Sigma Pay • Recupere seu acesso em instantes
+        </p>
+    </div>
 
     <main class="main">
         <div class="content-wrapper">
@@ -216,7 +444,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="access-button">
+                <a href="#" class="access-button" id="accessButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
                     Acessar Painel de Controle
                 </a>
@@ -227,280 +455,333 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
-<div class="footer-links">
-    <a href="javascript:void(0)" onclick="navegarPara('../politica-de-privacidade/index.html')">Política de Privacidade</a>
-    <a href="javascript:void(0)" onclick="navegarPara('../termos-de-uso/index.html')">Termos de Uso</a>
-    <a href="javascript:void(0)" onclick="navegarPara('../aviso-legal/index.html')">Aviso Legal</a>
-</div>
+                <a href="javascript:void(0)" onclick="navegarPara('../politica-de-privacidade/index.html')">Política de Privacidade</a>
+                <a href="javascript:void(0)" onclick="navegarPara('../termos-de-uso/index.html')">Termos de Uso</a>
+                <a href="javascript:void(0)" onclick="navegarPara('../aviso-legal/index.html')">Aviso Legal</a>
             </div>
             <p class="footer-copyright">© 2025 RadarFiel. Todos os direitos reservados.</p>
         </div>
     </footer>
     
+
+
     <script>
-        // URL para onde você quer redirecionar quando o usuário tentar voltar
-        const BACK_REDIRECT_URL = "https://brenodsl.github.io/radarfiel/back/";
-        
-        // Impede que o usuário saia da página com o botão voltar
-        history.pushState(null, "", location.href);
-        
-        window.addEventListener("popstate", function () {
-            location.href = BACK_REDIRECT_URL;
+        // --- SISTEMA DE CONTROLE DE ACESSO ---
+        const REPORT_ACCESS_KEY = 'radarfiel_report_accessed';
+        const USED_NUMBER_KEY = 'radarfiel_used_number';
+
+        function checkReportAccess() {
+            const reportAccessed = localStorage.getItem(REPORT_ACCESS_KEY) === 'true';
+            const usedNumber = localStorage.getItem(USED_NUMBER_KEY);
+            return { reportAccessed, usedNumber };
+        }
+
+        function markReportAsAccessed() {
+            localStorage.setItem(REPORT_ACCESS_KEY, 'true');
+        }
+
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Nova função para fechar popup e mostrar seção de crédito esgotado
+        function closePopupAndShowCreditSection() {
+            closePopup('usedAccessPopup');
+            showCreditExhaustedSection();
+        }
+
+        function showCreditExhaustedSection() {
+            const creditExhaustedSection = document.getElementById('creditExhaustedSection');
+            const creditExhaustedNumber = document.getElementById('creditExhaustedNumber');
+            const usedNumber = localStorage.getItem(USED_NUMBER_KEY);
+            
+            if (creditExhaustedSection && creditExhaustedNumber && usedNumber) {
+                // Formata o número para exibição
+                const formattedNumber = formatarNumeroParaExibicao(usedNumber);
+                creditExhaustedNumber.textContent = formattedNumber;
+                
+                // Esconde outras seções
+                const loadingContainer = document.getElementById('loadingContainer');
+                const profileSection = document.getElementById('profileSection');
+                
+                if (loadingContainer) loadingContainer.style.display = 'none';
+                if (profileSection) profileSection.style.display = 'none';
+                
+                // Mostra a seção de crédito esgotado
+                creditExhaustedSection.classList.add('visible');
+            }
+        }
+
+        function formatarNumeroParaExibicao(numero) {
+            const num = numero.replace(/\D/g, '');
+            if (num.length === 11) { 
+                return num.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3'); 
+            }
+            return numero;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- FUNÇÃO UNIVERSAL DE NAVEGAÇÃO ---
+            function navegarPara(pagina, novosParams = {}) {
+                const paramsAtuais = new URLSearchParams(window.location.search);
+                for (const key in novosParams) {
+                    paramsAtuais.set(key, novosParams[key]);
+                }
+                const queryString = paramsAtuais.toString();
+                window.location.href = pagina + (queryString ? '?' + queryString : '');
+            }
+
+            // --- LÓGICA DE COOKIES ---
+            const cookieNotice = document.getElementById('cookieNotice');
+            const body = document.body;
+            function aceitarCookies() {
+                if (!cookieNotice) return;
+                localStorage.setItem('cookiesAceitos', 'true');
+                body.classList.remove('cookie-notice-visible');
+            }
+            function ajustarLayoutParaCookie() {
+                if (!cookieNotice) return;
+                if (localStorage.getItem('cookiesAceitos') === 'true') {
+                    body.classList.remove('cookie-notice-visible');
+                } else {
+                    body.classList.add('cookie-notice-visible');
+                }
+            }
+            // Adiciona a classe no CSS para o padding do footer
+            const styleSheet = document.createElement("style");
+            styleSheet.innerText = `body.cookie-notice-visible .footer { padding-bottom: ${cookieNotice.offsetHeight + 20}px; }`;
+            document.head.appendChild(styleSheet);
+
+
+            // --- ELEMENTOS DO DOM ---
+            const loadingContainer = document.getElementById('loadingContainer');
+            const profileSection = document.getElementById('profileSection');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const logContainer = document.getElementById('logContainer');
+            const userCityElement = document.getElementById('userCity');
+            const imgProfile = document.getElementById('imgProfile');
+            const numeroPerfil = document.getElementById('numeroPerfil');
+            const profileName = document.getElementById('profileName');
+            const accessButton = document.getElementById('accessButton');
+            const popupUsedNumber = document.getElementById('popupUsedNumber');
+
+            // --- VERIFICAÇÃO DE ACESSO ---
+            const phoneNumber = localStorage.getItem('numeroClonado') || '';
+            const { reportAccessed, usedNumber } = checkReportAccess();
+            
+            // Se já acessou o relatório antes, mostra popup imediatamente
+            if (reportAccessed && usedNumber) {
+                // Formata o número para exibição
+                const formattedNumber = formatarNumeroParaExibicao(usedNumber);
+                popupUsedNumber.textContent = formattedNumber;
+                
+                // Mostra popup após pequeno delay
+                setTimeout(() => {
+                    showPopup('usedAccessPopup');
+                }, 500);
+                
+                // Impede o carregamento normal
+                if (loadingContainer) loadingContainer.style.display = 'none';
+                if (profileSection) {
+                    profileSection.style.display = 'none';
+                }
+                return; // Para a execução do carregamento normal
+            }
+
+            // --- DADOS E CONFIGURAÇÕES ---
+            const logMessages = [
+                { text: 'Iniciando conexão segura...', delay: 1000, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>' },
+                { text: 'Autenticando credenciais...', delay: 3000, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' },
+                { text: 'Autenticação bem-sucedida!', delay: 5000, class: 'success', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' },
+                { text: 'Verificando número de telefone...', delay: 6500, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' },
+                { text: 'Buscando informações do perfil...', delay: 8500, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' },
+                { text: 'Detectando localização do dispositivo...', delay: 10500, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>' },
+                { text: 'Localização suspeita encontrada em...', isLocation: true, delay: 12500 },
+                { text: 'Preparando painel de controle...', delay: 14500, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9"x2="9" y1="21" y2="9"/></svg>' },
+                { text: 'Acesso ao painel liberado!', delay: 16500, class: 'success', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' }
+            ];
+
+            // --- NOVAS FUNÇÕES ---
+            async function buscarFotoDaAPI(numeroCompleto) {
+                const defaultImage = "./perfil-vazio.jpg";
+                if (!numeroCompleto) return defaultImage;
+
+                const numeroLimpo = numeroCompleto.replace(/\D/g, "");
+                if (numeroLimpo.length < 11) return defaultImage;
+
+                const numeroApi = numeroLimpo.startsWith("55") ? numeroLimpo : "55" + numeroLimpo;
+
+                const urlBase = "https://whatsapp-data1.p.rapidapi.com/number/";
+                const params = "?base64=false&telegram=false&google=false";
+                const options = {
+                    method: "GET",
+                    headers: {
+                        "x-rapidapi-key": "4049613f67msh1ca359574a0e501p1fd540jsn758cabecdbf6",
+                        "x-rapidapi-host": "whatsapp-data1.p.rapidapi.com"
+                    }
+                };
+
+                async function tentarBuscar(num) {
+                    try {
+                        const apiUrl = urlBase + num + params;
+                        const response = await fetch(apiUrl, options);
+
+                        if (!response.ok) return null;
+
+                        const result = await response.json();
+                        const foto = result?.profilePic;
+
+                        if (foto && foto.startsWith("http")) {
+                            return foto;
+                        }
+                        return null;
+
+                    } catch {
+                        return null;
+                    }
+                }
+
+                let img = await tentarBuscar(numeroApi);
+
+                if (!img) {
+                    const tem13DigitosEQuintoEhNove = 
+                        numeroApi.length === 13 && numeroApi.charAt(4) === "9";
+
+                    if (tem13DigitosEQuintoEhNove) {
+                        const numeroCorrigido = numeroApi.substring(0, 4) + numeroApi.substring(5);
+                        img = await tentarBuscar(numeroCorrigido);
+                    }
+                }
+
+                return img || defaultImage;
+            }
+
+            async function carregarFotoDePerfil(numero) {
+                if (!imgProfile || !numero) return;
+
+                profileName.textContent = "Perfil Localizado";
+
+                const numeroLimpo = numero.replace(/\D/g, "");
+                const storageKey = "foto_" + numeroLimpo;
+
+                const fotoSalva = localStorage.getItem(storageKey);
+                if (fotoSalva) {
+                    imgProfile.src = fotoSalva;
+                    return;
+                }
+
+                const fotoUrl = await buscarFotoDaAPI(numero);
+
+                imgProfile.src = fotoUrl;
+
+                if (fotoUrl !== "./perfil-vazio.jpg") {
+                    localStorage.setItem(storageKey, fotoUrl);
+                }
+            }
+
+            function addLogMessage(message, className = '', icon = '') {
+                if(!logContainer) return;
+                const logLine = document.createElement('div');
+                logLine.className = 'log-line';
+                if (className) logLine.classList.add(className);
+                logLine.innerHTML = icon + ' ' + message;
+                logContainer.appendChild(logLine);
+                logContainer.scrollTop = logContainer.scrollHeight;
+                setTimeout(() => logLine.classList.add('visible'), 50);
+            }
+
+            function fetchUserLocation() {
+                fetch('https://wtfismyip.com/json')
+                    .then(res => res.ok ? res.json() : Promise.reject(res))
+                    .then(data => {
+                        const location = data.YourFuckingLocation || "Desconhecida";
+                        if(userCityElement) userCityElement.textContent = location;
+                        const locationLog = logMessages.find(m => m.isLocation);
+                        if (locationLog) {
+                            setTimeout(() => {
+                                const icon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v2m0 4h.01"/><path d="M11 3a8.1 8.1 0 0 0-6.6 12.8L11 22l6.6-6.2A8.1 8.1 0 0 0 11 3Z"/></svg>';
+                                addLogMessage(`Localização suspeita encontrada em ${location}`, 'warning', icon);
+                            }, locationLog.delay);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao obter localização:', error);
+                        if(userCityElement) userCityElement.textContent = 'Não detectada';
+                    });
+            }
+
+            // --- LÓGICA DE INICIALIZAÇÃO ---
+            ajustarLayoutParaCookie();
+            window.addEventListener('resize', ajustarLayoutParaCookie);
+
+            if(accessButton) {
+                accessButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Marca que o usuário acessou o relatório
+                    markReportAsAccessed();
+                    // Salva o número atual
+                    localStorage.setItem(USED_NUMBER_KEY, phoneNumber);
+                    navegarPara('../relatorio/index.html');
+                });
+            }
+
+            if(numeroPerfil) numeroPerfil.textContent = formatarNumeroParaExibicao(phoneNumber);
+            carregarFotoDePerfil(phoneNumber);
+
+            let progress = 0;
+            const totalTime = 18000;
+            const updateInterval = 100;
+            const progressIncrement = 100 / (totalTime / updateInterval);
+            const progressInterval = setInterval(() => {
+                progress += progressIncrement;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        if(loadingContainer) loadingContainer.style.display = 'none';
+                        if(profileSection) {
+                            profileSection.style.display = 'flex';
+                            profileSection.classList.add('visible');
+                        }
+                    }, 1000);
+                }
+                if(progressFill) progressFill.style.width = `${progress}%`;
+                if(progressText) progressText.textContent = `Verificando segurança... ${Math.round(progress)}%`;
+            }, updateInterval);
+
+            logMessages.forEach(msg => {
+                if (!msg.isLocation) {
+                    setTimeout(() => addLogMessage(msg.text, msg.class, msg.icon), msg.delay);
+                }
+            });
+            fetchUserLocation();
+        });
+
+        // Fechar popup ao clicar fora do conteúdo
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('popup-overlay')) {
+                const popupId = event.target.id;
+                closePopup(popupId);
+                // Se for o popup de acesso usado, mostra a seção de crédito esgotado
+                if (popupId === 'usedAccessPopup') {
+                    showCreditExhaustedSection();
+                }
+            }
         });
     </script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-
-    // --- FUNÇÃO UNIVERSAL DE NAVEGAÇÃO ---
-    function navegarPara(pagina, novosParams = {}) {
-        const paramsAtuais = new URLSearchParams(window.location.search);
-        for (const key in novosParams) {
-            paramsAtuais.set(key, novosParams[key]);
-        }
-        const queryString = paramsAtuais.toString();
-        window.location.href = pagina + (queryString ? '?' + queryString : '');
-    }
-
-    // --- LÓGICA DE COOKIES ---
-    const cookieNotice = document.getElementById('cookieNotice');
-    const body = document.body;
-    function aceitarCookies() {
-        if (!cookieNotice) return;
-        localStorage.setItem('cookiesAceitos', 'true');
-        body.classList.remove('cookie-notice-visible');
-    }
-    function ajustarLayoutParaCookie() {
-        if (!cookieNotice) return;
-        if (localStorage.getItem('cookiesAceitos') === 'true') {
-            body.classList.remove('cookie-notice-visible');
-        } else {
-            body.classList.add('cookie-notice-visible');
-        }
-    }
-    // Adiciona a classe no CSS para o padding do footer
-    const styleSheet = document.createElement("style");
-    styleSheet.innerText = `body.cookie-notice-visible .footer { padding-bottom: ${cookieNotice.offsetHeight + 20}px; }`;
-    document.head.appendChild(styleSheet);
-
-
-    // --- ELEMENTOS DO DOM ---
-    const loadingContainer = document.getElementById('loadingContainer');
-    const profileSection = document.getElementById('profileSection');
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
-    const logContainer = document.getElementById('logContainer');
-    const userCityElement = document.getElementById('userCity');
-    const imgProfile = document.getElementById('imgProfile');
-    const numeroPerfil = document.getElementById('numeroPerfil');
-    const profileName = document.getElementById('profileName');
-    const relatorioButton = document.querySelector('.access-button');
-
-    // --- DADOS E CONFIGURAÇÕES ---
-    const phoneNumber = localStorage.getItem('numeroClonado') || '(00) 00000-0000';
-    const logMessages = [
-        { text: 'Iniciando conexão segura...', delay: 1000, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>' },
-        { text: 'Autenticando credenciais...', delay: 3000, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' },
-        { text: 'Autenticação bem-sucedida!', delay: 5000, class: 'success', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' },
-        { text: 'Verificando número de telefone...', delay: 6500, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' },
-        { text: 'Buscando informações do perfil...', delay: 8500, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' },
-        { text: 'Detectando localização do dispositivo...', delay: 10500, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>' },
-        { text: 'Localização suspeita encontrada em...', isLocation: true, delay: 12500 },
-        { text: 'Preparando painel de controle...', delay: 14500, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9"x2="9" y1="21" y2="9"/></svg>' },
-        { text: 'Acesso ao painel liberado!', delay: 16500, class: 'success', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' }
-    ];
-
-
-
-
-
-
-
-
-
-
-    
-// --- NOVAS FUNÇÕES ---
-// Usa a nova API da RapidAPI COM fallback inteligente
-async function buscarFotoDaAPI(numeroCompleto) {
-    const defaultImage = "./perfil-vazio.jpg"; // sua imagem local
-    if (!numeroCompleto) return defaultImage;
-
-    const numeroLimpo = numeroCompleto.replace(/\D/g, "");
-    if (numeroLimpo.length < 11) return defaultImage;
-
-    const numeroApi = numeroLimpo.startsWith("55") ? numeroLimpo : "55" + numeroLimpo;
-
-    // --- CONFIG API ---
-    const urlBase = "https://whatsapp-data1.p.rapidapi.com/number/";
-    const params = "?base64=false&telegram=false&google=false";
-    const options = {
-        method: "GET",
-        headers: {
-            "x-rapidapi-key": "4049613f67msh1ca359574a0e501p1fd540jsn758cabecdbf6",
-            "x-rapidapi-host": "whatsapp-data1.p.rapidapi.com"
-        }
-    };
-
-    async function tentarBuscar(num) {
-        try {
-            const apiUrl = urlBase + num + params;
-            const response = await fetch(apiUrl, options);
-
-            if (!response.ok) return null;
-
-            const result = await response.json();
-            const foto = result?.profilePic;
-
-            if (foto && foto.startsWith("http")) {
-                return foto;
-            }
-            return null;
-
-        } catch {
-            return null;
-        }
-    }
-
-    // 1 — tenta com o número original
-    let img = await tentarBuscar(numeroApi);
-
-    // 2 — fallback: remover o nono dígito (caso BRA)
-    if (!img) {
-        const tem13DigitosEQuintoEhNove = 
-            numeroApi.length === 13 && numeroApi.charAt(4) === "9";
-
-        if (tem13DigitosEQuintoEhNove) {
-            const numeroCorrigido = numeroApi.substring(0, 4) + numeroApi.substring(5);
-            img = await tentarBuscar(numeroCorrigido);
-        }
-    }
-
-    return img || defaultImage;
-}
-
-
-// --- ADAPTAÇÃO DA FUNÇÃO DO SITE ---
-async function carregarFotoDePerfil(numero) {
-    if (!imgProfile || !numero) return;
-
-    profileName.textContent = "Perfil Localizado";
-
-    const numeroLimpo = numero.replace(/\D/g, "");
-    const storageKey = "foto_" + numeroLimpo;
-
-    // 1 — verifica cache
-    const fotoSalva = localStorage.getItem(storageKey);
-    if (fotoSalva) {
-        imgProfile.src = fotoSalva;
-        return;
-    }
-
-    // 2 — busca com nova API
-    const fotoUrl = await buscarFotoDaAPI(numero);
-
-    imgProfile.src = fotoUrl;
-
-    // salva no cache se não for default
-    if (fotoUrl !== "./perfil-vazio.jpg") {
-        localStorage.setItem(storageKey, fotoUrl);
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function addLogMessage(message, className = '', icon = '') {
-        if(!logContainer) return;
-        const logLine = document.createElement('div');
-        logLine.className = 'log-line';
-        if (className) logLine.classList.add(className);
-        logLine.innerHTML = icon + ' ' + message;
-        logContainer.appendChild(logLine);
-        logContainer.scrollTop = logContainer.scrollHeight;
-        setTimeout(() => logLine.classList.add('visible'), 50);
-    }
-function fetchUserLocation() {
-    fetch('https://wtfismyip.com/json')
-        .then(res => res.ok ? res.json() : Promise.reject(res))
-        .then(data => {
-            const location = data.YourFuckingLocation || "Desconhecida";
-            if(userCityElement) userCityElement.textContent = location;
-            const locationLog = logMessages.find(m => m.isLocation);
-            if (locationLog) {
-                setTimeout(() => {
-                    const icon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v2m0 4h.01"/><path d="M11 3a8.1 8.1 0 0 0-6.6 12.8L11 22l6.6-6.2A8.1 8.1 0 0 0 11 3Z"/></svg>';
-                    addLogMessage(`Localização suspeita encontrada em ${location}`, 'warning', icon);
-                }, locationLog.delay);
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao obter localização:', error);
-            if(userCityElement) userCityElement.textContent = 'Não detectada';
-        });
-}
-
-    function formatarNumeroParaExibicao(numero) {
-        const num = numero.replace(/\D/g, '');
-        if (num.length === 11) { return num.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3'); }
-        return numero;
-    }
-    
-    // --- LÓGICA DE INICIALIZAÇÃO ---
-    ajustarLayoutParaCookie();
-    window.addEventListener('resize', ajustarLayoutParaCookie);
-
-    if(relatorioButton) {
-        relatorioButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            navegarPara('../relatorio/index.html');
-        });
-    }
-
-    if(numeroPerfil) numeroPerfil.textContent = formatarNumeroParaExibicao(phoneNumber);
-    carregarFotoDePerfil(phoneNumber);
-
-    let progress = 0;
-    const totalTime = 18000;
-    const updateInterval = 100;
-    const progressIncrement = 100 / (totalTime / updateInterval);
-    const progressInterval = setInterval(() => {
-        progress += progressIncrement;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(progressInterval);
-            setTimeout(() => {
-                if(loadingContainer) loadingContainer.style.display = 'none';
-                if(profileSection) {
-                    profileSection.style.display = 'flex';
-                    profileSection.classList.add('visible');
-                }
-            }, 1000);
-        }
-        if(progressFill) progressFill.style.width = `${progress}%`;
-        if(progressText) progressText.textContent = `Verificando segurança... ${Math.round(progress)}%`;
-    }, updateInterval);
-
-    logMessages.forEach(msg => {
-        if (!msg.isLocation) {
-            setTimeout(() => addLogMessage(msg.text, msg.class, msg.icon), msg.delay);
-        }
-    });
-    fetchUserLocation();
-});
-</script>
 </body>
-
-
 </html>

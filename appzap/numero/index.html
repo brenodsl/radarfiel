@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<!-- Mirrored from criativadigital1.site/appzap2.2/numero/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:24:06 GMT -->
 <head>
     <script src="https://t.contentsquare.net/uxa/08fd45ab3f2c5.js"></script>
     <meta charset="UTF-8" />
@@ -79,6 +78,18 @@
             cursor: not-allowed;
             opacity: 0.8;
         }
+        .btn-checkout {
+            background-color: #f54c5c;
+            box-shadow: 0 6px 16px rgb(245 76 92);
+        }
+        .btn-checkout:hover {
+            background-color: #f54c5c;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            box-shadow: 0 6px 16px rgba(108, 117, 125, 0.7);
+        }
         .proof-item {
             background-color: #E6F4EA; border: 1px solid #B7E1C7; border-radius: 12px;
             padding: 12px 16px; margin-bottom: 10px; box-shadow: none;
@@ -88,6 +99,127 @@
         }
         .proof-item.show { opacity: 1; transform: translateY(0); }
         .proof-item p { font-size: 14px; font-weight: 500; color: #1A532B; margin: 0; }
+
+        /* MENSAGEM DE CRÉDITO ESGOTADO */
+        .credit-message {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        .credit-message.visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .credit-message p {
+            margin: 0 0 15px 0;
+            color: #856404;
+            font-size: 0.95rem;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* POPUP STYLES */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .popup {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .popup-overlay.active .popup {
+            transform: translateY(0);
+        }
+        .popup h2 {
+            color: var(--primary-green);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .popup p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .popup-buttons {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+        .popup-btn {
+            padding: 14px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+            box-shadow: 0 4px 12px rgba(245, 76, 92, 0.4);
+        }
+        .popup-btn-secondary {
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            border: 1px solid #dee2e6;
+        }
+        .popup-btn-primary:hover {
+            background-color: #e43e4e;
+            transform: translateY(-2px);
+        }
+        .popup-btn-secondary:hover {
+            background-color: #e9ecef;
+        }
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 5px;
+        }
+        .warning-icon {
+            color: #ffc107;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
 
         /* RODAPÉ PADRÃO */
         .footer { background: #222; color: #ccc; padding: 25px 0; font-size: 14px; text-align: center; margin-top: auto;}
@@ -100,20 +232,20 @@
             .main h1 { font-size: 1.6rem; }
             .main p { font-size: 1rem; }
             .footer-links { flex-direction: column; gap: 12px; }
+            .popup { padding: 20px; }
+            .popup-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="container">
-            
-            
             <div class="header-logo">
                 <img src="logo-radar.png" style="width: 125px;">
             </div>
-        
         </div>
     </header>
+    
     <main class="main">
         <div class="content-wrapper">
             <h1>Parabéns, você ganhou 1 acesso gratuito!</h1>
@@ -127,8 +259,21 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    Clonar WhatsApp Agora
+                    <span id="buttonText">Clonar WhatsApp Agora</span>
                 </button>
+                
+                <!-- Botão de checkout que aparece quando o crédito já foi usado -->
+                <a href="https://go.sigmapay.com.br/eft3cgbtcc" target="_blank" id="checkoutButton" class="btn btn-checkout" style="display: none; margin-top: 15px; text-decoration: none;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Acessar Relatório Completo
+                </a>
+            </div>
+
+            <!-- Mensagem informativa quando crédito foi usado -->
+            <div id="creditMessage" class="credit-message">
+                <p>Seu crédito gratuito já foi utilizado. Para acessar o relatório completo ou pesquisar um novo número, adquira o acesso completo.</p>
             </div>
 
             <div id="proof-container">
@@ -139,14 +284,52 @@
         </div>
     </main>
 
+    <!-- Popup para primeira pesquisa -->
+    <div id="firstSearchPopup" class="popup-overlay">
+        <div class="popup">
+            <button class="popup-close" onclick="closePopup('firstSearchPopup')">&times;</button>
+            <div class="warning-icon">⚠️</div>
+            <h2>Atenção!</h2>
+            <p>Você possui apenas <strong>UMA pesquisa gratuita</strong>.</p>
+            <p>Por favor, verifique cuidadosamente se o número informado está correto antes de prosseguir:</p>
+            <p id="numberToVerify" style="font-size: 1.2rem; font-weight: bold; color: var(--primary-green); margin: 15px 0;"></p>
+            <div class="popup-buttons">
+                <button class="popup-btn popup-btn-secondary" onclick="closePopup('firstSearchPopup')">
+                    Corrigir Número
+                </button>
+                <button class="popup-btn popup-btn-primary" onclick="confirmFirstSearch()">
+                    Sim, este é o número correto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup para quando já usou o crédito -->
+    <div id="usedCreditPopup" class="popup-overlay">
+        <div class="popup">
+            <button class="popup-close" onclick="closePopupAndShowCheckout()">&times;</button>
+            <h2>Acesso Completo</h2>
+            <p>Você já utilizou seu acesso gratuito para o número:</p>
+            <p id="usedNumberInfo" style="font-size: 1.2rem; font-weight: bold; color: var(--primary-green); margin: 15px 0;"></p>
+            <p>Para acessar o relatório completo deste número ou pesquisar um novo número, você pode adquirir nosso aplicativo completo por apenas:</p>
+            <p style="font-size: 1.4rem; font-weight: bold; color: #28a745; margin: 15px 0;">R$ 17,90</p>
+            <div class="popup-buttons">
+                <button class="popup-btn popup-btn-secondary" onclick="closePopupAndShowCheckout()">
+                    Fechar
+                </button>
+                <a href="https://go.sigmapay.com.br/eft3cgbtcc" target="_blank" class="popup-btn popup-btn-primary">
+                    Ir para o Checkout
+                </a>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
-<div class="footer-links">
-    <a href="javascript:void(0)" onclick="navegarPara('../politica-de-privacidade/index.html')">Política de Privacidade</a>
-    <a href="javascript:void(0)" onclick="navegarPara('../termos-de-uso/index.html')">Termos de Uso</a>
-    <a href="javascript:void(0)" onclick="navegarPara('../aviso-legal/index.html')">Aviso Legal</a>
-</div>
+                <a href="javascript:void(0)" onclick="navegarPara('../politica-de-privacidade/index.html')">Política de Privacidade</a>
+                <a href="javascript:void(0)" onclick="navegarPara('../termos-de-uso/index.html')">Termos de Uso</a>
+                <a href="javascript:void(0)" onclick="navegarPara('../aviso-legal/index.html')">Aviso Legal</a>
             </div>
             <p class="footer-copyright">© 2025 RadarFiel. Todos os direitos reservados.</p>
         </div>
@@ -165,6 +348,10 @@
     </script>
 
     <script>
+        // Sistema de Controle de Crédito
+        const CREDIT_STORAGE_KEY = 'radarfiel_credit_used';
+        const USED_NUMBER_KEY = 'radarfiel_used_number';
+
         /**
          * Função Universal para Navegação com Parâmetros
          */
@@ -178,29 +365,174 @@
         }
 
         /**
-         * Lógica Específica da Página de Número
+         * Funções para controlar os popups
+         */
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Nova função para fechar popup e mostrar botão de checkout
+        function closePopupAndShowCheckout() {
+            closePopup('usedCreditPopup');
+            showCheckoutButton();
+        }
+
+        function showCheckoutButton() {
+            const checkoutButton = document.getElementById('checkoutButton');
+            const creditMessage = document.getElementById('creditMessage');
+            const cloneButton = document.getElementById('cloneButton');
+            const phoneInput = document.getElementById('phoneInput');
+            
+            if (checkoutButton) {
+                checkoutButton.style.display = 'flex';
+            }
+            
+            if (creditMessage) {
+                creditMessage.classList.add('visible');
+            }
+            
+            if (cloneButton) {
+                cloneButton.disabled = true;
+            }
+            
+            if (phoneInput) {
+                phoneInput.disabled = true;
+                phoneInput.placeholder = "Crédito já utilizado";
+            }
+        }
+
+        /**
+         * Verificar se o usuário já usou seu crédito
+         */
+        function checkCreditUsage() {
+            const creditUsed = localStorage.getItem(CREDIT_STORAGE_KEY) === 'true';
+            const usedNumber = localStorage.getItem(USED_NUMBER_KEY);
+            
+            return { creditUsed, usedNumber };
+        }
+
+        /**
+         * Marcar crédito como usado
+         */
+        function markCreditAsUsed(phoneNumber) {
+            localStorage.setItem(CREDIT_STORAGE_KEY, 'true');
+            localStorage.setItem(USED_NUMBER_KEY, phoneNumber);
+        }
+
+        /**
+         * Confirmar primeira pesquisa
+         */
+        function confirmFirstSearch() {
+            const phoneInput = document.getElementById('phoneInput');
+            const numero = phoneInput.value.replace(/\D/g, '');
+            
+            // Marcar crédito como usado
+            markCreditAsUsed(numero);
+            
+            // Salvar no localStorage para a próxima página
+            localStorage.setItem('numeroClonado', numero);
+            
+            // Fechar popup e prosseguir
+            closePopup('firstSearchPopup');
+            navegarPara('../carregando/index.html');
+        }
+
+        /**
+         * Lógica principal quando a página carrega
          */
         document.addEventListener('DOMContentLoaded', () => {
             const phoneInput = document.getElementById('phoneInput');
             const cloneButton = document.getElementById('cloneButton');
+            const buttonText = document.getElementById('buttonText');
+            const checkoutButton = document.getElementById('checkoutButton');
+            
+            // Verificar se já usou o crédito
+            const { creditUsed, usedNumber } = checkCreditUsage();
+            
+            // Se já usou o crédito, mostrar o popup imediatamente
+            if (creditUsed && usedNumber) {
+                // Mostrar o número usado no popup
+                document.getElementById('usedNumberInfo').textContent = 
+                    formatPhoneNumber(usedNumber);
+                
+                // Mudar texto do botão principal para informativo
+                if (buttonText) {
+                    buttonText.textContent = 'Crédito Gratuito Utilizado';
+                }
+                
+                // Habilitar input para mostrar que é possível digitar, mas não pesquisar
+                if (phoneInput) {
+                    phoneInput.addEventListener('input', function() {
+                        const valor = this.value.replace(/\D/g, '');
+                        if (valor.length === 11) {
+                            // Se digitar número completo, mostrar popup
+                            const numero = this.value.replace(/\D/g, '');
+                            document.getElementById('usedNumberInfo').textContent = 
+                                formatPhoneNumber(numero);
+                            showPopup('usedCreditPopup');
+                        }
+                    });
+                }
+                
+                // Mostrar popup após um pequeno delay
+                setTimeout(() => {
+                    showPopup('usedCreditPopup');
+                }, 500);
+            }
 
-            if (phoneInput && cloneButton) {
-                // Máscara para o telefone
-                phoneInput.addEventListener('input', function () {
-                    let valor = this.value.replace(/\D/g, '');
-                    valor = valor.substring(0, 11);
-                    let formatado = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-                    this.value = formatado;
+            // Máscara para o telefone
+            phoneInput.addEventListener('input', function () {
+                let valor = this.value.replace(/\D/g, '');
+                valor = valor.substring(0, 11);
+                let formatado = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+                this.value = formatado;
+                
+                // Habilitar/desabilitar botão baseado no comprimento
+                if (!creditUsed) {
                     cloneButton.disabled = (valor.length !== 11);
-                });
+                }
+            });
 
-                // Ação do botão
-                cloneButton.addEventListener('click', function () {
-                    if(this.disabled) return;
-                    const numero = phoneInput.value.replace(/\D/g, '');
-                    localStorage.setItem('numeroClonado', numero);
-                    navegarPara('../carregando/index.html'); // USA A FUNÇÃO CORRETA
-                });
+            // Ação do botão principal
+            cloneButton.addEventListener('click', function () {
+                if (this.disabled) return;
+                
+                const numero = phoneInput.value.replace(/\D/g, '');
+                
+                // Verificar se é a primeira vez ou se já usou crédito
+                const { creditUsed } = checkCreditUsage();
+                
+                if (!creditUsed) {
+                    // Primeira vez - mostrar popup de confirmação
+                    document.getElementById('numberToVerify').textContent = 
+                        formatPhoneNumber(numero);
+                    showPopup('firstSearchPopup');
+                } else {
+                    // Já usou crédito - mostrar popup de upgrade
+                    document.getElementById('usedNumberInfo').textContent = 
+                        formatPhoneNumber(numero);
+                    showPopup('usedCreditPopup');
+                }
+            });
+
+            // Formatar número de telefone para exibição
+            function formatPhoneNumber(numero) {
+                if (numero.length === 11) {
+                    return `(${numero.substring(0,2)}) ${numero.substring(2,7)}-${numero.substring(7)}`;
+                }
+                return numero;
             }
 
             // Lógica das Provas Sociais
@@ -238,8 +570,19 @@
 
             iniciarProvasSociais();
         });
+
+        // Fechar popup ao clicar fora do conteúdo
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('popup-overlay')) {
+                const popupId = event.target.id;
+                closePopup(popupId);
+                
+                // Se for o popup de crédito usado, mostrar botão de checkout
+                if (popupId === 'usedCreditPopup') {
+                    showCheckoutButton();
+                }
+            }
+        });
     </script>
 </body>
-
-<!-- Mirrored from criativadigital1.site/appzap2.2/numero/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Dec 2025 22:24:06 GMT -->
 </html>
