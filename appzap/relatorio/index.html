@@ -13,35 +13,6 @@
         rel="stylesheet" />
 
 
-
-    <script>
-        // ALTERE O LINK PARA A PÁGINA QUE QUISER MOSTRAR QUANDO O USUÁRIO TENTAR SAIR
-        const link = '../../back/';
-
-        function setBackRedirect(url) {
-            let urlBackRedirect = url;
-            urlBackRedirect = urlBackRedirect =
-                urlBackRedirect.trim() +
-                (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
-                document.location.search.replace('?', '').toString();
-
-            history.pushState({}, '', location.href);
-            history.pushState({}, '', location.href);
-            history.pushState({}, '', location.href);
-
-            window.addEventListener('popstate', () => {
-                console.log('onpopstate', urlBackRedirect);
-                setTimeout(() => {
-                    location.href = urlBackRedirect;
-                }, 1);
-            });
-        }
-
-        setBackRedirect(link);
-    </script>
-
-
-
     <style>
         :root {
             --primary-green: #F54C5C;
@@ -681,9 +652,7 @@
         // Impede que o usuário saia da página com o botão voltar
         history.pushState(null, "", location.href);
         
-        window.addEventListener("popstate", function () {
-            location.href = BACK_REDIRECT_URL;
-        });
+        
     </script>
 
     <script>
