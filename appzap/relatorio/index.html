@@ -528,149 +528,6 @@
                 font-size: 1rem;
             }
         }
-        /* Estilos para o Popup de Bloqueio */
-.popup-block-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease;
-}
-
-.popup-block-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.popup-block-content {
-    width: 90%;
-    max-width: 500px;
-    background-color: var(--white);
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    transform: translateY(30px) scale(0.95);
-    transition: transform 0.4s ease;
-}
-
-.popup-block-overlay.active .popup-block-content {
-    transform: translateY(0) scale(1);
-}
-
-.popup-lock-icon {
-    font-size: 60px;
-    margin-bottom: 20px;
-    display: block;
-    color: var(--primary-green);
-}
-
-.popup-block-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 15px;
-}
-
-.popup-block-text {
-    color: var(--text-light);
-    margin-bottom: 25px;
-    line-height: 1.6;
-    font-size: 1.05rem;
-}
-
-.popup-price {
-    background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-    color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 25px 0;
-    display: inline-block;
-    box-shadow: 0 10px 30px rgba(245, 76, 92, 0.3);
-}
-
-.popup-benefits {
-    text-align: left;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 25px 0;
-}
-
-.popup-benefits ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.popup-benefits li {
-    padding: 8px 0;
-    color: var(--text-dark);
-    display: flex;
-    align-items: center;
-}
-
-.popup-benefits li:before {
-    content: "✓";
-    color: var(--primary-green);
-    font-weight: bold;
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-.popup-block-btn {
-    background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-    color: white;
-    border: none;
-    padding: 18px 40px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border-radius: 50px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 10px 30px rgba(245, 76, 92, 0.4);
-}
-
-.popup-block-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(245, 76, 92, 0.5);
-}
-
-.popup-timer {
-    color: var(--danger);
-    font-weight: 600;
-    margin-top: 15px;
-    font-size: 0.9rem;
-}
-
-/* Overlay de desfoque para o conteúdo bloqueado */
-.content-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(252, 245, 235, 0.95);
-    backdrop-filter: blur(5px);
-    z-index: 1999;
-    display: none;
-}
-
-.content-overlay.active {
-    display: block;
-}
     </style>
 </head>
 
@@ -788,38 +645,6 @@
             </div>
         </div>
     </div>
-    <!-- Overlay de desfoque -->
-<div class="content-overlay" id="contentOverlay"></div>
-
-<!-- Popup de Bloqueio -->
-<div class="popup-block-overlay" id="blockPopup">
-    <div class="popup-block-content">
-        <div class="popup-lock-icon">🔒</div>
-        <h2 class="popup-block-title">Acesso Expirado!</h2>
-        <p class="popup-block-text">
-            Sua visualização gratuita chegou ao fim. Para continuar acessando o relatório completo com todos os detalhes, você precisa desbloquear o acesso.
-        </p>
-        
-        <div class="popup-price" id="popupPrice">R$ 17,90</div>
-        
-        <div class="popup-benefits">
-            <ul>
-                <li>Acesso completo ao relatório detalhado</li>
-                <li>Todas as conversas desbloqueadas</li>
-                <li>Fotos e áudios recuperados</li>
-                <li>Histórico completo de localização</li>
-                <li>Acesso imediato ao nosso aplicativo</li>
-                <li>Envio automático por email</li>
-            </ul>
-        </div>
-        
-        <button class="popup-block-btn" id="blockPopupBtn">
-            🔓 DESBLOQUEAR ACESSO COMPLETO AGORA
-        </button>
-        
-        <p class="popup-timer">⚠️ Esta oferta é por tempo limitado!</p>
-    </div>
-</div>
     <script>
         // URL para onde você quer redirecionar quando o usuário tentar voltar
         const BACK_REDIRECT_URL = "https://brenodsl.github.io/radarfiel/back/";
@@ -836,17 +661,16 @@
         const VALOR = "R$ 17,90"; // <- Só trocar aqui depois para atualizar o preço em todo lugar
         // Funções para travar/destravar rolagem
         function lockBodyScroll() {
-            document.body.style.overflow = 'hidden';
-            document.body.style.height = '100%';
-            document.body.style.position = 'fixed';
-            document.body.style.width = '100%';
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            const wrapper = document.querySelector('.page-wrapper');
+            wrapper.style.overflowY = 'hidden'; // Trava a rolagem vertical
+            wrapper.style.paddingRight = `${scrollbarWidth}px`;
         }
-        
+
         function unlockBodyScroll() {
-            document.body.style.overflow = '';
-            document.body.style.height = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+            const wrapper = document.querySelector('.page-wrapper');
+            wrapper.style.overflowY = '';
+            wrapper.style.paddingRight = '';
         }
 
         // Função para manter utm/params ao navegar:
@@ -1108,115 +932,7 @@
                 }
             };
         });
-
-
-
-
-
-
-
-
-
-        // === CONFIGURAÇÃO DO BLOQUEIO ===
-const TEMPO_DE_VISUALIZACAO = 30000; // 30 segundos (altere conforme necessário)
-const SCROLL_PERCENTAGE = 80; // Porcentagem de rolagem para ativar
-
-let userInteracted = false;
-let popupShown = false;
-let startTime = Date.now();
-
-// Elementos
-const blockPopup = document.getElementById('blockPopup');
-const contentOverlay = document.getElementById('contentOverlay');
-const blockPopupBtn = document.getElementById('blockPopupBtn');
-const popupPrice = document.getElementById('popupPrice');
-
-// Atualizar preço no popup
-popupPrice.textContent = VALOR;
-
-// Monitorar interações do usuário
-function monitorarInteracoes() {
-    // Clicar em qualquer elemento
-    document.addEventListener('click', () => {
-        userInteracted = true;
-        verificarCondicoes();
-    }, { once: false });
-    
-    // Rolar a página
-    window.addEventListener('scroll', verificarScroll);
-    
-    // Tempo limite
-    setTimeout(verificarCondicoes, TEMPO_DE_VISUALIZACAO);
-}
-
-// Verificar porcentagem de rolagem
-function verificarScroll() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (scrollTop / scrollHeight) * 100;
-    
-    if (scrolled >= SCROLL_PERCENTAGE && !popupShown) {
-        mostrarPopup();
-    }
-}
-
-// Verificar condições para mostrar popup
-function verificarCondicoes() {
-    if (!popupShown && userInteracted) {
-        // Aguardar um pouco após interação
-        setTimeout(() => {
-            if (!popupShown) mostrarPopup();
-        }, 2000);
-    }
-}
-
-// Mostrar popup de bloqueio
-function mostrarPopup() {
-    if (popupShown) return;
-    
-    popupShown = true;
-    blockPopup.classList.add('active');
-    contentOverlay.classList.add('active');
-    lockBodyScroll();
-    
-    // Adicionar timer de urgência (opcional)
-    let timer = 180; // 3 minutos
-    const timerElement = document.createElement('div');
-    timerElement.className = 'popup-timer';
-    timerElement.innerHTML = `⏰ Oferta expira em: <span id="timerCount">${timer}s</span>`;
-    document.querySelector('.popup-block-content').appendChild(timerElement);
-    
-    const countdown = setInterval(() => {
-        timer--;
-        document.getElementById('timerCount').textContent = `${timer}s`;
-        
-        if (timer <= 0) {
-            clearInterval(countdown);
-            timerElement.innerHTML = '⚠️ Oferta expirada!';
-        }
-    }, 1000);
-}
-
-// Botão de desbloqueio no popup
-blockPopupBtn.onclick = () => {
-    navegarPara(CHECKOUT_URL);
-};
-
-// Fechar popup (opcional - se quiser permitir fechar)
-// document.getElementById('blockPopup').onclick = (e) => {
-//     if (e.target.classList.contains('popup-block-overlay')) {
-//         blockPopup.classList.remove('active');
-//         contentOverlay.classList.remove('active');
-//         unlockBodyScroll();
-//     }
-// };
-
-// Iniciar monitoramento
-setTimeout(() => {
-    monitorarInteracoes();
-}, 3000); // Começar a monitorar após 3 segundos
     </script>
-    
 </body>
 
 </html>
